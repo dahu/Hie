@@ -7,6 +7,21 @@ TIP: If you like Hie and want to share the W00t!, I'm grateful for
 https://www.gittip.com/bairuidahu/[tips] or
 http://of-vim-and-vigor.blogspot.com/[beverages].
 
+`:HieIdx`
+~~~~~~~~~
+
+Use the `:HieIdx` command to initialise a Hie directory.
+
+TIP: It's best to do this in an empty directory.
+
+[NOTE]
+====
+This will do two things in the current directory:
+
+. Create a `data` directory.
+. Create a `hie.idx` file.
+====
+
 Usage
 ~~~~~
 
