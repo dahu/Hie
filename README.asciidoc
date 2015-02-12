@@ -33,3 +33,9 @@ Press `ctrl-t` to jump back to prior notes.
 Use `:Hie someterm` to create a note from the command line.
 
 The `hie.idx` file is the master index of terms.
+
+Searching for Terms
+~~~~~~~~~~~~~~~~~~~
+
+Use the built-in `:lvimgrep` or https://github.com/dahu/grope[Grope]
+for full-text searches on your notes.
