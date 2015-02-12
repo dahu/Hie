@@ -3,4 +3,18 @@ Hie
 
 __Quick Notes Tool in Vim__
 
+TIP: If you like Hie and want to share the W00t!, I'm grateful for
+https://www.gittip.com/bairuidahu/[tips] or
+http://of-vim-and-vigor.blogspot.com/[beverages].
 
+Usage
+~~~~~
+
+Press `ctrl-]` on words or visually highlighted text to create new
+notes indexed as such.
+
+Press `ctrl-t` to jump back to prior notes.
+
+Use `:Hie someterm` to create a note from the command line.
+
+The `hie.idx` file is the master index of terms.

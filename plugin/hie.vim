@@ -129,7 +129,6 @@ endfunction
 
 function! Hie_index_controller()
   nnoremap <buffer> <c-]> :call Hie_edit_index_term(matchstr(getline('.'), '^\S\+\t\s*\zs.*'))<cr>
-  nmap     <buffer> gf    <c-]>
   setlocal statusline=[Hie]\ %{Hie_term_stack()}
   setlocal conceallevel=3 concealcursor=nc
   set ft=hieidx
@@ -142,9 +141,22 @@ function! Hie_filetype_controller()
   call Hie_highlight_terms()
   xnoremap <buffer> <c-]> y:call Hie_edit_index_term(expand(@@))<cr>
   nnoremap <buffer> <c-]> :call Hie_edit_index_term(expand('<cword>'))<cr>
-  nmap     <buffer> gf    <c-]>
   nnoremap <buffer> <c-t> :call Hie_pop_term()<cr>
 endfunction
+
+let s:usage = [
+      \  'Usage'
+      \, '-----'
+      \, ''
+      \, 'Press `ctrl-]` on words or visually highlighted text to create new'
+      \, 'notes indexed as such.'
+      \, ''
+      \, 'Press `ctrl-t` to jump back to prior notes.'
+      \, ''
+      \, 'Use `:Hie someterm` to create a note from the command line.'
+      \, ''
+      \, 'The `hie.idx` file is the master index of terms.'
+      \]
 
 function! Hie_init()
   if ! exists("*mkdir")
@@ -159,7 +171,7 @@ function! Hie_init()
   call Hie_index_controller()
   call Hie_edit_index_term('Welcome')
   call Hie_filetype_controller()
-  call append(3, ["Usage notes", "go", "here"])
+  call append(3, s:usage)
   write!
 endfunction
 
@@ -171,8 +183,8 @@ augroup Hie
   au BufEnter           */data/_[0-9a-f]/* call Hie_highlight_terms()
 augroup END
 
-exe 'command! -nargs=0 -bar Hie silent! edit ' . s:idx_path()
-
+command! -bar -nargs=+ Hie call Hie_edit_index_term(<q-args>)
+exe 'command! -bar -nargs=0 HieIdx silent! edit ' . s:idx_path()
 
 if ! exists('g:hie_highlight_terms')
   let g:hie_highlight_terms = 1
